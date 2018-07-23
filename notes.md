@@ -31,3 +31,35 @@ Function context
 - The context of a function/method is it's immediate parent? No reference to the 'grandparent' with 'this'?
 
 - only methods (properties whose values are functions) have access to 'this'?
+
+Mutating Objects
+
+- Functions can alter the content of Objects passed in as arguments: side effect. Any other code that references that Object sees those same changes.
+
+- A Function can't change the value of a variable that it received as an argument. But it can mutate the original object the variable references, if it is a mutable object.
+
+Stack vs Heap
+
+- When a primitive value is assigned to a variable, the variable stores the value (stack);
+- But when an object is assigned to a variable, the variable stores a pointer (stack) to the object (heap);
+
+
+Functions as Object Factories
+
+A straightforward way to create objects using functions, a so-called object factory.
+
+OOP with JS
+
+The object-oriented approach to programming puts data and procedures that manipulate that data into containers or objects. Maintenance is easier when we can limit the scope of changes.
+
+Object-based code is much easier to understand; the relationship between it and the data is readily evident.
+
+The Global Object
+
+- Undeclared global variables can be deleted, but not declared global variables. Also, global variables added explicitly to the global object as properties can be deleted just like undeclared variables.
+
+Execution Context
+
+- Which object 'this' refers to depends on how the function was invoked.
+
+ - Binding a function to a context object occurs when you execute the function, not when you define it.
