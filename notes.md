@@ -63,3 +63,7 @@ Execution Context
 - Which object 'this' refers to depends on how the function was invoked.
 
  - Binding a function to a context object occurs when you execute the function, not when you define it.
+
+ Internal Function Losing Method Context
+
+ Tricky. Needs to be reviewed: https://launchschool.com/lessons/c9200ad2/assignments/022f50f4
