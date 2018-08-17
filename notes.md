@@ -80,4 +80,18 @@ Execution Context
 
  Closure and Objects
 
- Making data private can make it harder to extend the code.
+ - Making data private can make it harder to extend the code.
+
+- JavaScript is a garbage-collected language, which means that the JS runtime, rather than the developer, handles memory deallocation.
+
+- Values referenced by global variables: Only after the script finishes running the value will be eligible for garbage collection.
+
+Partial function application
+
+- Closures lets us define private data that persists for the function's lifetime. This technique is useful when we need to package both data and functionality together.
+
+Immediately Invoked Function Expressions
+
+- The IIFE pattern provides a way to create a "module" of sorts.
+
+
