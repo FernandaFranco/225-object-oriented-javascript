@@ -94,4 +94,48 @@ Immediately Invoked Function Expressions
 
 - The IIFE pattern provides a way to create a "module" of sorts.
 
+Prototypal Inheritance /  Behavior Delegation
+
+-  A term better suited than prototypal inheritance to JavaScript is prototypal delegation. When a new object is created from another object in JavaScript, it links back to the parent object’s prototype properties and methods as opposed to copying them.
+
+- In a true object oriented (as opposed to "class oriented") way, objects can be created directly from other objects and behaviors (methods) can be shared via the prototype chain.
+
+- The approach of defining shared behaviors on the constructor's .prototype property is called the "Prototype Pattern" of object creation.
+
+Prototype Chain
+
+- I don't 100% get it: https://launchschool.com/lessons/24a4613a/assignments/5de6e5a0
+
+- Those problems are not trivial! I don't feel very confident moving on before fully grokking it: https://launchschool.com/lessons/24a4613a/assignments/cbb1afa7
+
+The Factory Pattern
+
+- JavaScript’s Factory Pattern employs a factory function to create new objects. It was conceived as a DRY means to abstract the process of creating objects. However, there are couple problems with it:
+
+- Efficiency — Methods created on the factory function are copied to all new object instances. This is inefficient.
+- Type Determination — Because the factory function returns a new object, it makes type determination of object instances difficult. New object instances are typed as “Object”, with no indication of the instances’ context.
+
+The type determination problem led to the creation of the Constructor Pattern.
+
+The Constructor Pattern
+
+- The main problem with the Constructor Pattern is, as in the Factory Pattern, inefficiency. In the Constructor Pattern, methods are [still] copied to all new object instances. This problem led to the creation of the Combination Constructor/Prototype Pattern.
+
+The Pseudo-classical Pattern: Combination Constructor/Prototype Pattern
+
+- The Pseudo-classical pattern is a combination of the constructor pattern and the prototype pattern. With this pattern, we use a constructor to set object states, and put shared methods on the constructor function's prototype.
+
+- It allows for unique (non-shared) instance properties to be created within a constructor function, as well as shared properties and methods on the constructor function’s prototype.
+
+- If you wish to assign a new object to a prototype and maintain the constructor relationship, you will need to recreate the constructor property and assign it the proper value. Stick with the dot notation — to augment the default prototype object on a constructor function, rather than replacing it with a new object literal.
+
+The OLOO Pattern
+
+- OLOO which stands for "Object Linking to Other Objects," is first popularized by Kyle Simpson. JavaScript sheds its pretense as a "class oriented" language, where it uses constructor functions as fake classes. Instead, it embraces its prototype based object model. With the OLOO pattern, we define the shared behaviors on a prototype object, then use Object.create() to create objects that inherit directly from that object, without going through the roundabout way that involves "constructors and their prototype properties."
+
+- It’s important to note that in OLOO there are no constructors. While the first letter of the Car object is still capitalized, it is done so only to remain consistent with the accepted convention.
+
+- OLOO allows/forces you to create and initialize your objects at separate times, rather than bundling both object creation and initialization together.
+
+- Because there is no constructor in the OLOO Pattern, calling johnCar instanceof Car will throw an error. Also, calling johnCar.constructor will delegate up the prototype chain to Object.prototype.constructor and return the native method. You can test the Car object’s relationship to johnCar with Car.isPrototypeOf(johnCar), which returns true.
 
