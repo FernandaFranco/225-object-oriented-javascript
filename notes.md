@@ -129,6 +129,10 @@ The Pseudo-classical Pattern: Combination Constructor/Prototype Pattern
 
 - If you wish to assign a new object to a prototype and maintain the constructor relationship, you will need to recreate the constructor property and assign it the proper value. Stick with the dot notation — to augment the default prototype object on a constructor function, rather than replacing it with a new object literal.
 
+- Use Function.prototype.call to have the subclass "inherit" properties from the parent class.
+- Use Function.prototype = Object.create(obj) to "inherit" methods from the parent class.
+- Use Function.prototype.constructor to manually reset the property to point back to the appropriate constructor.
+
 The OLOO Pattern
 
 - OLOO which stands for "Object Linking to Other Objects," is first popularized by Kyle Simpson. JavaScript sheds its pretense as a "class oriented" language, where it uses constructor functions as fake classes. Instead, it embraces its prototype based object model. With the OLOO pattern, we define the shared behaviors on a prototype object, then use Object.create() to create objects that inherit directly from that object, without going through the roundabout way that involves "constructors and their prototype properties."
