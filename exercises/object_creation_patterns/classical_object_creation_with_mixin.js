@@ -77,13 +77,11 @@ function delegate(callingObject, methodOwner, methodName) {
 
 function extend(object, mixin) {
   var methodNames = Object.keys(mixin);
-  var objectPrototype = Object.getPrototypeOf(object);
-  console.log(objectPrototype);
   methodNames.forEach(function(name) {
-    objectPrototype[name] = delegate(objectPrototype, mixin, name);
+    object[name] = delegate(object, mixin, name);
   });
 
-  console.log(objectPrototype);
+  console.log(object);
   return object;
 }
 
