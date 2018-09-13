@@ -6,7 +6,7 @@
   * Explicit function execution context
   * Dealing with context loss
 * Scope and Closures
-  *Creating and using private data
+  * Creating and using private data
   * IIFEs
   * Partial Functions
 * Object creation patterns
