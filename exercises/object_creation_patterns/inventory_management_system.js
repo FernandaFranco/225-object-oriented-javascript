@@ -110,11 +110,11 @@ console.log(ItemManager.inStock());
 ReportManager.reportInStock();
 
 // returns list with the item objects for basket ball, soccer ball, and football
-ItemManager.itemsInCategory('sports');
+console.log(ItemManager.itemsInCategory('sports'));
 
 ItemManager.delete('SOCSP');
 // returns list the the remaining 3 valid items (soccer ball is removed from the list)
-ItemManager.items;
+console.log(ItemManager.items);
 
 var kitchenPotReporter = ReportManager.createReporter('KITCO');
 kitchenPotReporter.itemInfo();
@@ -131,4 +131,3 @@ kitchenPotReporter.itemInfo();
 // itemName: kitchen pot
 // category: cooking
 // quantity: 10
-co

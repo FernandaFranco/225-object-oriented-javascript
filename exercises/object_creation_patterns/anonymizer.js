@@ -1,4 +1,6 @@
 var Account = (function() {
+  var data = {};
+
   function isValidPassword(testPassword, password) {
     return testPassword === password;
   }
@@ -22,56 +24,61 @@ var Account = (function() {
 
   return {
     init: function(email, password, firstName, lastName) {
-      var userEmail = email;
-      var userPassword = password;
-      var userFirstName = firstName;
-      var userLastName = lastName;
       this.displayName = anonymize();
-
-      this.reanonymize = function(currentPassword) {
-        if (isValidPassword(currentPassword, userPassword)) {
-          this.displayName = anonymize();
-          return true;
-        } else {
-          return 'Invalid Password';
-        }
-      };
-
-      this.resetPassword = function(currentPassword, newPassword) {
-        if (isValidPassword(currentPassword, userPassword)) {
-          userPassword = newPassword;
-          return true;
-        } else {
-          return 'Invalid Password';
-        }
-      };
-
-      this.firstName = function(currentPassword) {
-        if (isValidPassword(currentPassword, userPassword)) {
-          return userFirstName;
-        } else {
-          return 'Invalid Password';
-        }
-      };
-
-      this.lastName = function(currentPassword) {
-        if (isValidPassword(currentPassword, userPassword)) {
-          return userLastName;
-        } else {
-          return 'Invalid Password';
-        }
-      };
-
-      this.email = function(currentPassword) {
-        if (isValidPassword(currentPassword, userPassword)) {
-          return userEmail;
-        } else {
-          return 'Invalid Password';
-        }
-      };
+      data[this.displayName] = {
+        userEmail: email,
+        userPassword: password,
+        userFirstName: firstName,
+        userLastName: lastName,
+      }
 
       return this;
     },
+      reanonymize: function(currentPassword) {
+        if (isValidPassword(currentPassword, data[this.displayName].userPassword)) {
+          var oldDisplayName = this.displayName;
+          this.displayName = anonymize();
+          // data[this.displayName] = Object.assign({}, data[oldDisplayName]);
+          data[this.displayName] = data[oldDisplayName];
+          delete data[oldDisplayName];
+          return true;
+        } else {
+          return 'Invalid Password';
+        }
+      },
+
+      resetPassword: function(currentPassword, newPassword) {
+        if (isValidPassword(currentPassword, data[this.displayName].userPassword)) {
+          data[this.displayName].userPassword = newPassword;
+          return true;
+        } else {
+          return 'Invalid Password';
+        }
+      },
+
+      firstName: function(currentPassword) {
+        if (isValidPassword(currentPassword, data[this.displayName].userPassword)) {
+          return data[this.displayName].userFirstName;
+        } else {
+          return 'Invalid Password';
+        }
+      },
+
+      lastName: function(currentPassword) {
+        if (isValidPassword(currentPassword, data[this.displayName].userPassword)) {
+          return data[this.displayName].userLastName;
+        } else {
+          return 'Invalid Password';
+        }
+      },
+
+      email: function(currentPassword) {
+        if (isValidPassword(currentPassword, data[this.displayName].userPassword)) {
+          return data[this.displayName].userEmail;
+        } else {
+          return 'Invalid Password';
+        }
+      },
   };
 })();
 
@@ -90,6 +97,8 @@ fooBar.reanonymize('abc');                         // returns true
 console.log(displayName === fooBar.displayName);   // logs false
 
 var bazQux = Object.create(Account).init('baz@qux.com', '123456', 'baz', 'qux');
+console.log(bazQux);
+console.log(bazQux.reanonymize('123456'));
 console.log(bazQux);
 console.log(fooBar.firstName('123456'));           // logs 'baz' but should log 'Invalid password'.
 console.log(bazQux.firstName('123456'));           // logs 'baz'
