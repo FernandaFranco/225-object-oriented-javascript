@@ -1,3 +1,7 @@
 Intentions for the day:
 - Read all Severin's posts;
 - Redo the assignments + fill the study guide;
+
+- Blog post: types of closures! what different things you can achieve with closures:
+-- function returning object
+-- IIFE
