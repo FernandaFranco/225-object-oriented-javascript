@@ -3,7 +3,7 @@
   * Object factories
 * Determining/setting function execution context (this)
 
-  ### What is `this`?
+  * What is `this`?
 
   `this` is the current execution context of a JavaScript function at any given point in the program.
 
@@ -12,7 +12,7 @@
   * Dealing with context loss
 * Scope and Closures
 
-  ### What is a closure?
+  * What is a closure?
 
   Definition: closure is
   * Creating and using private data
