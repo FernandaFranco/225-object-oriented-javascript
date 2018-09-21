@@ -28,15 +28,15 @@ Function context
 
 - Parent object context
 
-- The context of a function/method is it's immediate parent? No reference to the 'grandparent' with 'this'?
+- The context of a function/method is it's immediate parent? No reference to the 'grandparent' with 'this'? YEP
 
-- only methods (properties whose values are functions) have access to 'this'?
+- only methods (properties whose values are functions) have access to 'this'? YES
 
 Mutating Objects
 
 - Functions can alter the content of Objects passed in as arguments: side effect. Any other code that references that Object sees those same changes.
 
-- A Function can't change the value of a variable that it received as an argument. But it can mutate the original object the variable references, if it is a mutable object.
+- A Function can't change the value of a variable that it received as an argument. But it can mutate the original object the variable references, if it is a mutable value like object.
 
 Stack vs Heap
 
