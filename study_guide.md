@@ -31,7 +31,12 @@
 
     * Call, apply.
     * `var args = [].slice.call(arguments);`
+
   * Dealing with context loss
+
+    * `self` and `that`;
+    * `call` and `apply`;
+    * `bind` the function expression (not declaration!!!) to a permanent context;
 
 * Scope and Closures
 
