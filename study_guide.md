@@ -47,9 +47,11 @@
 
   * What is a closure?
 
-    Definition: closure is the ability of a function to retain access to all the variables visible (in scope) to them upon declaration.
+    Definition: closure is the ability of a function to retain access to all the variables visible (in scope) to them upon declaration. It is created when a function is declared, and allow the function to retain access to all of the variables visible to it inside of the scope where it was declared.
 
     Another definition: Closure is when a function is able to remember and access its lexical scope even when that function is executing outside its lexical scope.
+
+    Closures have a lot of similarities to objects. They both provide the means to organize code into data and a chunk of behavior that relies on that data.
 
   * What is scope?
 
@@ -65,12 +67,27 @@
 
     Using closures to restrict data access is a good way to force other developers to use the intended interface. By keeping the collection of items private, we enforce access via the provided methods. These benefits have a cost. For instance, making data private can make it harder to extend the code.
 
-  * IIFEs
+  * Garbage Collecting
+
+    A variable that is function scoped has its reference to a value broken after the function execution, unless a closure exists. Global variables are not collected until the program finishes executing.
+
   * Partial Functions
+
+    We've been using bind to set an explicit execution context. However, we can also use it to make a function with pre-specified initial arguments (use `null` as the context when not needed).
+
+  * IIFEs
+
+    We can omit the parentheses around an IIFE when the function definition is an expression that doesn't occur at the beginning of a line.
+
+    A named function expression (function declaration?) can be immediately invoked, although the function name will be isolated from the outer scope.
 
 * Object creation patterns
   * Constructor functions
   * Prototype objects
   * Behavior delegation
   * OLOO and Pseudo-Classical patterns
+
+   8
+   9 - 11
+  11 - 14
 
