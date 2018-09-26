@@ -11,7 +11,7 @@
 
     2 problems with object factories:
       * Each object created by a object factory will have its own copy of every property, which isn't very DRY. We want objs to have its own copy of data, but the shared behavior represented by methods could be in their prototype, for example;
-      *
+      * No way of knowing if the object created came from a factory function. Object's "type" will be Object?
 
 * Determining/setting function execution context (this)
 
@@ -82,8 +82,22 @@
     A named function expression (function declaration?) can be immediately invoked, although the function name will be isolated from the outer scope.
 
 * Object creation patterns
+
   * Constructor functions
+
+    Don't forget to use `new`!
+
+  * Methods/Expressions to remember:
+
+    ```javascript
+    Object.getPrototypeOf(obj)
+    obj.isPrototypeOf(foo)
+    var bar = Object.create(foo)
+    ```
   * Prototype objects
+
+    If you don't create an object from a prototype, its prototype is the Object.prototype object.
+
   * Behavior delegation
   * OLOO and Pseudo-Classical patterns
 
