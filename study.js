@@ -1,26 +1,17 @@
-// var Robot = {
-//   init: function(name, occupation) {
-//     this.name = name;
-//     this.occupation = occupation;
-//     return this;
-//   },
-//   sum: function(firstOperand, secondOperand) {
-//     return firstOperand + secondOperand;
-//   },
-// };
-
-// console.log(Robot.sum(2, 2));
-
-// var r2d2 = Object.create(Robot).init('R2D2', 'helpful little fella');
-
-
-function Robot(name, occupation) {
-  this.name = name;
-  this.occupation = occupation;
+var animal = {
+  type: 'mammal',
+  breathe: function() {
+    console.log("I'm breathing");
+  },
 }
 
-Robot.prototype.sum = function(firstOperand, secondOperand) {
-  return firstOperand + secondOperand;
-};
+var dog = Object.create(animal);
+var terrier = Object.create(dog);
 
-var r2d2 = new Robot('R2D2', 'helpful little fella');
+console.log(terrier.type);                 // "mammal"
+console.log(terrier.__proto__)             // {}
+console.log(terrier.__proto__ === dog);    // true
+console.log(Object.getPrototypeOf(terrier) === dog);    // true
+console.log(terrier.__proto__ === animal); // false
+console.log(Object.getPrototypeOf(terrier) === animal); // false
+console.log(animal.isPrototypeOf(terrier)); // true

@@ -79,7 +79,7 @@
 
     We can omit the parentheses around an IIFE when the function definition is an expression that doesn't occur at the beginning of a line.
 
-    A named function expression (function declaration?) can be immediately invoked, although the function name will be isolated from the outer scope.
+    A named function expression (not function declaration when it's not at the beginning of a line) can be immediately invoked, although the function name will be isolated from the outer scope.
 
 * Object creation patterns
 
@@ -93,15 +93,55 @@
     Object.getPrototypeOf(obj)
     obj.isPrototypeOf(foo)
     var bar = Object.create(foo)
+    bar.hasOwnProperty('a')
+    Object.getOwnPropertyNames(bar)
+
     ```
   * Prototype objects
 
     If you don't create an object from a prototype, its prototype is the Object.prototype object.
 
-  * Behavior delegation
+    `Object.Prototype.isPrototypeOf(foo)` can return true for more than 1 prototype (prototype chain);
+
+  * Behavior delegation (Prototypal Inheritance)
+
+     JavaScript doesn't have true classes, but in a true object oriented (as opposed to "class oriented") way, objects can be created directly from other objects and behaviors (methods) can be shared via the prototype chain.
+
+     If you chain prototypes using `Child.prototype = Object.create(Parent.prototype)`, we are able to only share behavior, as opposed to `Child.prototype = new Parent(arg)` where Child objects would have access to properties defined in the Parent constructor function.
+
   * OLOO and Pseudo-Classical patterns
 
-   8
-   9 - 11
-  11 - 14
+    * Pseudo-Classical pattern
+
+      * use new to create objects
+      * use instanceof to check type
+      * Inheritance:
+      ```javascript
+      function Teacher(first, last, age, gender, interests, subject) {
+        Person.call(this, first, last, age, gender, interests);
+
+        this.subject = subject;
+      }
+
+      Teacher.prototype = Object.create(Person.prototype);
+      Teacher.prototype.constructor = Teacher;
+      ```
+
+    * OLOO
+
+      * init method to set states
+      * use isPrototypeOf to check type
+      * Inheritance:
+      ```javascript
+      var Teacher = Object.create(Person);
+      Teacher.init = function(first, last, age, gender, interests, subject) {
+        Person.init.call(this, first, last, age, gender, interests);
+
+        this.subject = subject;
+
+        return this;
+      };
+
+      var mrsJohnson = Object.create(Teacher).init('Linda', 'Johnson', 87, female, 'Knitting', 'English');
+      ```
 
