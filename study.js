@@ -1,17 +1,24 @@
-var animal = {
-  type: 'mammal',
-  breathe: function() {
-    console.log("I'm breathing");
-  },
+function delegate(object, method) {
+  var args = [].slice.call(arguments, 2);
+
+  return function() {
+    return object[method].apply(object, args);
+  };
 }
 
-var dog = Object.create(animal);
-var terrier = Object.create(dog);
+var foo = {
+  name: 'test',
+  bar: function(greeting) {
+    console.log(greeting + ' ' + this.name);
+  },
+};
 
-console.log(terrier.type);                 // "mammal"
-console.log(terrier.__proto__)             // {}
-console.log(terrier.__proto__ === dog);    // true
-console.log(Object.getPrototypeOf(terrier) === dog);    // true
-console.log(terrier.__proto__ === animal); // false
-console.log(Object.getPrototypeOf(terrier) === animal); // false
-console.log(animal.isPrototypeOf(terrier)); // true
+var baz = {
+  qux: delegate(foo, 'bar', 'hello'),
+};
+
+baz.qux();   // logs 'hello test';
+
+foo.bar = function() { console.log('changed'); };
+
+baz.qux();          // logs 'changed'

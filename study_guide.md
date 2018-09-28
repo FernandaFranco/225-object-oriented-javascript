@@ -95,7 +95,16 @@
     var bar = Object.create(foo)
     bar.hasOwnProperty('a')
     Object.getOwnPropertyNames(bar)
+    obj instanceof Obj
+    Object.defineProperties // add a property to an object that can't be modified when writable: false
+    Object.freeze
+    ```
 
+    ```javascript
+    Object.getPrototypeOf([]) === Array.prototype;    // true
+
+    function NewArray() {}
+    NewArray.prototype = Object.create(Object.getPrototypeOf([]));
     ```
   * Prototype objects
 
@@ -115,6 +124,7 @@
 
       * use new to create objects
       * use instanceof to check type
+      * instanceof will also return true for constructors higher in the prototype chain, not just the constructor function used to create the object.
       * Inheritance:
       ```javascript
       function Teacher(first, last, age, gender, interests, subject) {
@@ -126,6 +136,8 @@
       Teacher.prototype = Object.create(Person.prototype);
       Teacher.prototype.constructor = Teacher;
       ```
+
+    * Extend and delegate with Mixin: manually delegate methods to a mixin object, simulating having extra prototypes?
 
     * OLOO
 
